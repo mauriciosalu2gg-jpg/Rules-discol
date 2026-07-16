@@ -14,7 +14,7 @@
 
     :root {
       /* Paleta oscura Umamusume: púrpura profundo + oro + rosa suave */
-      --bg:       #08050e; /* Even darker for the cave */
+      --bg: #150926; /* Even darker for the cave */
       --surface:  #110a1c;
       --surface2: #181028;
       --surface3: #221638;
@@ -378,7 +378,7 @@
 
     /* ─── Mountain Cave Wrapper ─── */
     .mountain-cave {
-      background: rgba(8,5,14,0.35);
+      background: rgba(21, 9, 38, 0.4);
       position: relative;
       padding-top: 80px;
     }
@@ -388,7 +388,7 @@
       content: '';
       position: absolute;
       top: -60px; left: 0; right: 0; height: 60px;
-      background: linear-gradient(to bottom, transparent, rgba(8,5,14,0.35));
+      background: linear-gradient(to bottom, transparent, rgba(21, 9, 38, 0.4));
       pointer-events: none;
     }
 
@@ -685,7 +685,8 @@
     #enter-screen {
       position: fixed;
       inset: 0;
-      background: rgba(8,5,14,0.65);
+      background: radial-gradient(circle at center, #1c0e30 0%, #10061e 100%);
+      background-image: radial-gradient(circle at center, #1c0e30 0%, #10061e 100%), url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='0.8' fill='rgba(255,255,255,0.15)'/%3E%3Ccircle cx='10' cy='10' r='0.5' fill='rgba(255,210,120,0.1)'/%3E%3Ccircle cx='50' cy='15' r='1' fill='rgba(255,255,255,0.1)'/%3E%3Ccircle cx='15' cy='50' r='0.6' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
       backdrop-filter: blur(0px);
       z-index: 9999;
       display: flex;
@@ -704,8 +705,10 @@
       font-family: 'Playfair Display', serif;
       font-size: 4.5rem;
       font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 0 40px rgba(255,204,77,0.2);
+      background: linear-gradient(135deg, #ffd369 0%, #ff85a2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 20px rgba(255,133,162,0.3));
       margin-bottom: 5px;
       animation: pulse-glow 3s infinite alternate;
     }
@@ -753,8 +756,8 @@
 <!-- ── Hero Section (Video Background) ── -->
 <div class="hero-wrapper">
   <video id="hero-video" autoplay loop muted playsinline poster="poster.jpg">
-    <source src="bg-optimized.webm" type="video/webm">
-    <source src="bg-optimized.mp4" type="video/mp4">
+    <source src="bg-hq.webm" type="video/webm">
+    <source src="bg-hq.mp4" type="video/mp4">
   </video>
   <div class="hero-overlay"></div>
 </div>
@@ -762,9 +765,13 @@
 <!-- ── Enter Experience Overlay ── -->
 <div id="enter-screen">
   <div class="enter-content">
-    <div class="enter-logo">✦ Alero ✦</div>
-    <p>Sumérgete en la montaña</p>
+    <div style="font-size:0.75rem; letter-spacing:0.3em; color:rgba(255,255,255,0.6); margin-bottom:15px;">✦ SERVIDOR OFICIAL ✦</div>
+    <div class="enter-logo">Umas community</div>
+    <p style="font-style:italic; font-family:'Playfair Display', serif; letter-spacing:0.05em; color:rgba(255,255,255,0.8); text-transform:none;">— Bajo la luna y los cerezos —</p>
     <button id="enter-btn">Entrar al Reglamento</button>
+    <div style="margin-top: 25px; font-size: 0.75rem; color: rgba(255,255,255,0.4); max-width: 400px; text-align: center; line-height: 1.4;">
+      No está afiliado con Cygames, ni como server extra o de soporte a Umamusume, solo un servidor de comunidad externo.
+    </div>
   </div>
 </div>
 
@@ -1216,7 +1223,7 @@
     // 3. Animación del título hero
     setTimeout(() => {
       if (heroOverlay) heroOverlay.classList.add('start-anim');
-    }, 300);
+    }, 1500);
 
     // 4. Eliminar del DOM y arrancar reveal
     setTimeout(() => {
@@ -1224,7 +1231,7 @@
         enterScreen.parentNode.removeChild(enterScreen);
       }
       document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
-    }, 850);
+    }, 2800);
   });
 </script>
   </body>
