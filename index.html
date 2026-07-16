@@ -13,8 +13,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --dynamic-dur: 1.8s;
-      --dynamic-delay: 0.08s;
+      --dynamic-dur: 0.9s;
+      --dynamic-delay: 0.06s;
       /* Paleta oscura Umamusume: púrpura profundo + oro + rosa suave */
       --bg: #150926; /* Even darker for the cave */
       --surface:  #110a1c;
@@ -948,7 +948,7 @@
 
     /* Phones (landscape and up to ~680px) */
     @media (max-width: 680px) {
-      html { scroll-behavior: auto; }
+      html { scroll-behavior: auto; font-size: 13px; }
 
       /* Nav */
       .nav { padding: 0 14px; gap: 0; }
@@ -978,9 +978,9 @@
       /* Layout */
       .container { padding: 48px 14px 90px; }
       .gap { height: 48px; }
-      .card { padding: 20px 16px; }
-      .card-header { gap: 12px; margin-bottom: 20px; }
-      .card-title { font-size: 1rem; }
+      .card { padding: 18px 14px; margin-bottom: 16px; }
+      .card-header { gap: 10px; margin-bottom: 16px; }
+      .card-title { font-size: 0.95rem; }
       .card-sub { font-size: 0.8rem; }
       .stitle h2 { font-size: 1.2rem; }
       .stitle-badge { font-size: 0.58rem; padding: 3px 9px; }
@@ -1006,15 +1006,18 @@
         font-size: 0.68rem;
       }
 
-      /* Risk meter */
+      /* Risk meter simulator */
       .risk-meter { padding: 14px; margin-top: 20px; }
       .risk-label { font-size: 0.84rem; margin-bottom: 12px; }
-      .risk-gauge { margin-bottom: 16px; }
-      .risk-track { height: 14px; }
-      .risk-legend { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .risk-item { font-size: 0.76rem; }
-      .tick { font-size: 0.54rem; }
-      .risk-ticks { top: -16px; }
+      .risk-value-display { font-size: 2.2rem; }
+      .premium-slider { max-width: 100%; }
+      .risk-details-card { padding: 14px; }
+      .details-header { gap: 10px; margin-bottom: 12px; }
+      .details-icon { font-size: 1.8rem; }
+      .details-header h4 { font-size: 1rem; }
+      .details-header p { font-size: 0.72rem; }
+      .details-section h5 { font-size: 0.78rem; }
+      .details-section p, .details-section ul { font-size: 0.78rem; }
 
       /* Timeline */
       .timeline::before { left: 22px; }
@@ -1953,37 +1956,6 @@
     }
   }, { threshold: 0.4 });
   if (barsEl) barsIO.observe(barsEl);
-
-  
-  // ── Dynamic Scroll Speed Animation ──
-  let lastScrollY = window.scrollY;
-  let ticking = false;
-  
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        const currentScrollY = window.scrollY;
-        const speed = Math.abs(currentScrollY - lastScrollY);
-        lastScrollY = currentScrollY;
-        
-        // Map scroll speed to duration and stagger delay
-        let duration = 2.5 - (speed * 0.02);
-        let staggerDelay = 0.08 - (speed * 0.001);
-        
-        // If they scroll extremely fast (speed > 100), animations load almost instantly
-        if (duration < 0.15) duration = 0.15;
-        if (duration > 2.5) duration = 2.5;
-        
-        if (staggerDelay < 0.01) staggerDelay = 0.01;
-        if (staggerDelay > 0.1) staggerDelay = 0.1;
-        
-        document.documentElement.style.setProperty('--dynamic-dur', duration + 's');
-        document.documentElement.style.setProperty('--dynamic-delay', staggerDelay + 's');
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
 
 
   // ── Active nav highlight (Robust Scroll Listener) ──
