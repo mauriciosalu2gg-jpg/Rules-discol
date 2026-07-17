@@ -1586,6 +1586,21 @@
         </div>
       </div>
 
+      <div class="card reveal">
+        <div class="card-header">
+          <div class="card-icon">🧠</div>
+          <div>
+            <div class="card-title">Reglas de Inteligencia Artificial (Novarito V2)</div>
+            <div class="card-sub">Normativas para el uso e interacción con las funciones avanzadas de IA.</div>
+          </div>
+        </div>
+        <ul class="rule-list stagger">
+          <li class="rule-item"><span class="rnum">#1</span><div class="rtxt"><strong>No sobreexplotar al bot</strong><span>Está prohibido saturar al bot con solicitudes excesivas o complejas diseñadas para agotar sus recursos. El uso abusivo afectará tu límite de interacciones y la experiencia del resto de los usuarios.</span></div></li>
+          <li class="rule-item"><span class="rnum">#2</span><div class="rtxt"><strong>Sistema de Karma</strong><span>Novarito cuenta con un sistema de Karma. Hacer spam de comandos o menciones sin sentido reducirá tu Karma y te penalizará limitando o bloqueando tus interacciones con la IA de forma automática.</span></div></li>
+          <li class="rule-item"><span class="rnum">#3</span><div class="rtxt"><strong>Uso ético</strong><span>Está estrictamente prohibido intentar manipular a la IA, forzarla a saltar sus filtros de moderación o pedirle contenido inapropiado o que rompa las reglas del servidor.</span></div></li>
+        </ul>
+      </div>
+
       <!-- § 05 -->
       <div class="gap"></div>
       <div class="stitle reveal" id="puntos">
@@ -1685,12 +1700,12 @@
             <div class="risk-bar-track">
               <div id="risk-active-bar" class="risk-bar-fill risk-state-safe" style="width: 0%;"></div>
             </div>
-            <div class="risk-ticks-flat">
-              <span>0</span>
-              <span>30</span>
-              <span>60</span>
-              <span>80</span>
-              <span>100</span>
+            <div class="risk-ticks-flat" style="position: relative; height: 16px;">
+              <span style="position: absolute; left: 0%; transform: translateX(0%);">0</span>
+              <span style="position: absolute; left: 30%; transform: translateX(-50%);">30</span>
+              <span style="position: absolute; left: 60%; transform: translateX(-50%);">60</span>
+              <span style="position: absolute; left: 80%; transform: translateX(-50%);">80</span>
+              <span style="position: absolute; left: 100%; transform: translateX(-100%);">100</span>
             </div>
           </div>
 
@@ -1739,59 +1754,188 @@
           <div class="ci">⏳</div>
           <p><strong>Expiración automática —</strong> El sistema descuenta 20 puntos por cada 30 días sin infracciones. El comportamiento positivo restaura tu historial progresivamente.</p>
         </div>
+
+        <!-- TABS DE VARIACIONES DE PUNTOS -->
       </div>
 
-      <!-- § 06 -->
       <div class="gap"></div>
       <div class="stitle reveal" id="sanciones">
         <span class="stitle-badge">§ 06</span>
-        <h2>Escala de Sanciones</h2>
+        <h2>Variaciones y Sanciones</h2>
       </div>
 
-      <div class="card reveal">
-        <div class="card-header">
-          <div class="card-icon">⚖️</div>
-          <div>
-            <div class="card-title">Proceso de Sanción Automatizado</div>
-            <div class="card-sub">Las sanciones escalan proporcionalmente según los puntos acumulados.</div>
-          </div>
-        </div>
+      <style>
+        .pts-tabs {
+          display: flex;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .pts-tab-btn {
+          flex: 1;
+          background: var(--surface2);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-lg);
+          padding: 20px;
+          text-align: center;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+          position: relative;
+          overflow: hidden;
+          box-shadow: var(--shadow);
+        }
+        .pts-tab-btn::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; height: 3px;
+          background: transparent;
+          transition: background 0.3s ease;
+        }
+        .pts-tab-btn:hover {
+          transform: translateY(-4px);
+          background: var(--surface3);
+        }
+        .pts-tab-btn.active {
+          background: var(--surface3);
+        }
+        .pts-tab-btn.tab-sancion.active {
+          border-color: rgba(224,96,112,0.4);
+          box-shadow: 0 8px 24px rgba(224,96,112,0.15);
+        }
+        .pts-tab-btn.tab-sancion.active::before { background: var(--red); }
+        .pts-tab-btn.tab-karma.active {
+          border-color: rgba(255, 215, 0, 0.4);
+          box-shadow: 0 8px 24px rgba(255, 215, 0, 0.15);
+        }
+        .pts-tab-btn.tab-karma.active::before { background: #ffd700; }
+        
+        .pts-tab-icon {
+          font-size: 2rem;
+          margin-bottom: 8px;
+          display: block;
+        }
+        .pts-tab-title {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: var(--white);
+          margin-bottom: 4px;
+        }
+        .pts-tab-desc {
+          font-size: 0.85rem;
+          color: var(--subtext);
+        }
+        
+        .pts-tab-content {
+          display: none;
+          animation: pts-fade-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .pts-tab-content.active {
+          display: block;
+        }
+        @keyframes pts-fade-in {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 600px) {
+          .pts-tabs { flex-direction: column; gap: 12px; }
+        }
+      </style>
 
-        <div class="timeline stagger">
-          <div class="tl-item">
-            <div class="tl-dot tl-warn">⚠️</div>
-            <div class="tl-body">
-              <div class="tl-name">Avisos (Strikes) <span class="tl-tag tag-w">0 - 39 PTS</span></div>
-              <div class="tl-desc">El mensaje infractor es eliminado automáticamente. El bot notifica en el canal con el motivo, los puntos acumulados y el umbral siguiente. El sistema da entre 3 y 6 oportunidades de corregir tu actitud antes de aplicar una sanción real de silencio o expulsión, aplicando a todos por igual (incluyendo al Staff).</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot tl-mute">🔇</div>
-            <div class="tl-body">
-              <div class="tl-name">Silencio Temporal <span class="tl-tag tag-m">≥ 40 PTS</span></div>
-              <div class="tl-desc">El mensaje es eliminado. El usuario recibe un timeout de <strong>10 minutos</strong> durante los cuales no puede enviar mensajes en ningún canal. Reincidencias pueden extender este período a discreción del staff.</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot tl-kick">👢</div>
-            <div class="tl-body">
-              <div class="tl-name">Expulsión Temporal <span class="tl-tag tag-k">≥ 70 PTS</span></div>
-              <div class="tl-desc">El usuario es expulsado del servidor. Puede reintegrarse mediante una nueva invitación válida, pero su historial de puntos <strong>persiste</strong>. Una reincidencia inmediata escala directamente al baneo permanente.</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot tl-ban">🔨</div>
-            <div class="tl-body">
-              <div class="tl-name">Baneo Permanente <span class="tl-tag tag-b">≥ 100 PTS</span></div>
-              <div class="tl-desc">El usuario es baneado permanentemente. En casos de doxxing, scam, phishing o contenido ilegal, se genera un <strong>reporte formal a Discord Trust & Safety</strong> con todos los registros.</div>
-            </div>
-          </div>
+      <div class="pts-tabs reveal">
+        <div class="pts-tab-btn tab-sancion active" onclick="showPtsTab('sancion')">
+          <span class="pts-tab-icon">⚖️</span>
+          <div class="pts-tab-title">Sanción Automatizada</div>
+          <div class="pts-tab-desc">Escala de penalizaciones por infracciones</div>
         </div>
+        <div class="pts-tab-btn tab-karma" onclick="showPtsTab('karma')">
+          <span class="pts-tab-icon">✨</span>
+          <div class="pts-tab-title">Puntos a Favor</div>
+          <div class="pts-tab-desc">Beneficios por buen comportamiento (Karma)</div>
+        </div>
+      </div>
 
-        <div class="callout cl-red">
-          <div class="ci">⚡</div>
-          <p><strong>Sanciones inmediatas sin acumulación de puntos:</strong> Doxxing, scam, phishing y cualquier contenido que involucre menores de edad resultan en <strong>ban permanente inmediato</strong>, independientemente del historial.</p>
+      <div id="content-sancion" class="pts-tab-content active">
+        <div class="card reveal in">
+          <div class="card-header">
+            <div class="card-icon">⚖️</div>
+            <div>
+              <div class="card-title">Proceso de Sanción Automatizado</div>
+              <div class="card-sub">Las sanciones escalan proporcionalmente según los puntos acumulados.</div>
+            </div>
+          </div>
+
+          <div class="timeline stagger in">
+            <div class="tl-item">
+              <div class="tl-dot tl-warn">⚠️</div>
+              <div class="tl-body">
+                <div class="tl-name">Avisos (Strikes) <span class="tl-tag tag-w">0 - 39 PTS</span></div>
+                <div class="tl-desc">El mensaje infractor es eliminado automáticamente. El bot notifica en el canal con el motivo, los puntos acumulados y el umbral siguiente. El sistema da entre 3 y 6 oportunidades de corregir tu actitud antes de aplicar una sanción real de silencio o expulsión, aplicando a todos por igual (incluyendo al Staff).</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot tl-mute">🔇</div>
+              <div class="tl-body">
+                <div class="tl-name">Silencio Temporal <span class="tl-tag tag-m">≥ 40 PTS</span></div>
+                <div class="tl-desc">El mensaje es eliminado. El usuario recibe un timeout de <strong>10 minutos</strong> durante los cuales no puede enviar mensajes en ningún canal. Reincidencias pueden extender este período a discreción del staff.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot tl-kick">👢</div>
+              <div class="tl-body">
+                <div class="tl-name">Expulsión Temporal <span class="tl-tag tag-k">≥ 80 PTS</span></div>
+                <div class="tl-desc">El usuario es expulsado del servidor. Puede reintegrarse mediante una nueva invitación válida, pero su historial de puntos <strong>persiste</strong>. Una reincidencia inmediata escala directamente al baneo permanente o temporal.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot tl-ban" style="background: #e67e22;">⏱️</div>
+              <div class="tl-body">
+                <div class="tl-name" style="color: #e67e22;">Baneo Temporal <span class="tl-tag" style="background: #e67e22; color: #fff;">≥ 90 PTS</span></div>
+                <div class="tl-desc">El usuario es baneado del servidor de forma temporal.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot tl-ban">🔨</div>
+              <div class="tl-body">
+                <div class="tl-name">Baneo Permanente <span class="tl-tag tag-b">100 PTS</span></div>
+                <div class="tl-desc">El usuario es baneado permanentemente. En casos de doxxing, scam, phishing o contenido ilegal, se genera un <strong>reporte formal a Discord Trust & Safety</strong> con todos los registros.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout cl-red">
+            <div class="ci">⚡</div>
+            <p><strong>Sanciones inmediatas sin acumulación de puntos:</strong> Doxxing, scam, phishing y cualquier contenido que involucre menores de edad resultan en <strong>ban permanente inmediato</strong>, independientemente del historial.</p>
+          </div>
         </div>
+      </div>
+
+      <div id="content-karma" class="pts-tab-content">
+        <div class="callout" style="background: rgba(255, 215, 0, 0.05); border-left: 4px solid #ffd700; margin-top: 0;">
+          <div class="ci" style="color: #ffd700; font-size: 1.8rem;">✨</div>
+          <h3 style="color: #ffd700; font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; margin-top: -6px;">Puntos a Favor (Karma)</h3>
+          <p><strong>El buen comportamiento se recompensa de forma silenciosa.</strong> Si mantienes un historial limpio, ganarás <strong>+5 puntos cada 3 semanas</strong> y <strong>+30 puntos al mes</strong>. A medida que acumulas Karma, Novarito detecta tu nivel y te otorga beneficios de forma dinámica:</p>
+          
+          <div class="pts-bars" style="margin-top: 20px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px;">
+            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">0 pts</div><div class="pts-track"><div class="pts-fill" data-w="10" style="background:#555; color:#555;"></div></div><div class="pts-action" style="color:#aaa">Modo Estándar. Comportamiento normal.</div></div>
+            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">20 pts</div><div class="pts-track"><div class="pts-fill" data-w="20" style="background:#d4af37; color:#d4af37;"></div></div><div class="pts-action" style="color:#d4af37">Trato más amable y empático.</div></div>
+            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">40 pts</div><div class="pts-track"><div class="pts-fill" data-w="40" style="background:#ffb84d; color:#ffb84d;"></div></div><div class="pts-action" style="color:#ffb84d">Iniciativa propia (Te contará secretos de vez en cuando).</div></div>
+            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">60 pts</div><div class="pts-track"><div class="pts-fill" data-w="60" style="background:#ff9933; color:#ff9933;"></div></div><div class="pts-action" style="color:#ff9933">Roleo avanzado. (Te seguirá la corriente si le pides jugar o abrazos).</div></div>
+            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">80 pts</div><div class="pts-track"><div class="pts-fill" data-w="80" style="background:#ff7733; color:#ff7733;"></div></div><div class="pts-action" style="color:#ff7733">Roleos complejos (Maid, Yandere, etc).</div></div>
+            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">100 pts</div><div class="pts-track"><div class="pts-fill" data-w="100" style="background:#ffcc00; color:#ffcc00; box-shadow: 0 0 8px #ffcc00"></div></div><div class="pts-action" style="color:#ffcc00; font-weight:bold;">Nivel Máximo de Afinidad y Confianza.</div></div>
+          </div>
+          
+          <p style="margin-top: 14px; color: #ffaa00; font-size: 0.85rem;">⚠️ <em>Advertencia: Cualquier infracción o falta a las reglas (Aviso Leve o superior) reiniciará todo tu Karma a 0 instantáneamente, perdiendo todos los beneficios acumulados.</em></p>
+        </div>
+      </div>
+
+      <script>
+        function showPtsTab(tabId) {
+          document.querySelectorAll('.pts-tab-content').forEach(el => el.classList.remove('active'));
+          document.querySelectorAll('.pts-tab-btn').forEach(el => el.classList.remove('active'));
+          document.getElementById('content-' + tabId).classList.add('active');
+          document.querySelector('.tab-' + tabId).classList.add('active');
+        }
+      </script>
       </div>
 
       <!-- § 07 -->
@@ -2104,7 +2248,8 @@
       icon: "🔇",
       className: "state-danger",
       tutorials: [
-        "Estás al límite de ser expulsado del servidor. Reflexiona sobre tus interacciones."
+        "Para evitar llegar a este punto, utiliza los canales de voz en lugar de texto si sientes frustración.",
+        "Si consideras que las advertencias previas fueron un error de IA, abre un ticket de apelación pacíficamente en lugar de discutir con el bot."
       ]
     },
     70: {
@@ -2114,7 +2259,8 @@
       icon: "🔇",
       className: "state-danger",
       tutorials: [
-        "Tu cuenta está marcada como de alto riesgo. Los moderadores revisarán tu caso manualmente."
+        "Acepta el aislamiento sin intentar evadirlo. Crear cuentas alternativas (alts) para hablar resultará en ban permanente para ambas cuentas.",
+        "Aprovecha el tiempo para leer detenidamente las reglas. Al volver, evita cualquier conflicto por 30 días para que tus puntos bajen de forma natural."
       ]
     },
     80: {
@@ -2124,7 +2270,8 @@
       icon: "👢",
       className: "state-danger",
       tutorials: [
-        "Si logras reingresar, compórtate de forma impecable. Tu historial persiste y la siguiente falta causará un baneo."
+        "Si fuiste expulsado, significa que se agotó la paciencia. Para regresar, solicita una invitación a un administrador por MD.",
+        "Al reingresar, entrarás en 'Libertad Condicional'. Usa el servidor solo para observar y evita debates hasta que el bot descuente puntos por buena conducta."
       ]
     },
     90: {
