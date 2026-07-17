@@ -1915,13 +1915,49 @@
           <h3 style="color: #ffd700; font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 12px; margin-top: -6px;">Puntos a Favor (Karma)</h3>
           <p><strong>El buen comportamiento se recompensa de forma silenciosa.</strong> Si mantienes un historial limpio, ganarás <strong>+5 puntos cada 3 semanas</strong> y <strong>+30 puntos al mes</strong>. A medida que acumulas Karma, Novarito detecta tu nivel y te otorga beneficios de forma dinámica:</p>
           
-          <div class="pts-bars" style="margin-top: 20px; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px;">
-            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">0 pts</div><div class="pts-track"><div class="pts-fill" data-w="10" style="background:#555; color:#555;"></div></div><div class="pts-action" style="color:#aaa">Modo Estándar. Comportamiento normal.</div></div>
-            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">20 pts</div><div class="pts-track"><div class="pts-fill" data-w="20" style="background:#d4af37; color:#d4af37;"></div></div><div class="pts-action" style="color:#d4af37">Trato más amable y empático.</div></div>
-            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">40 pts</div><div class="pts-track"><div class="pts-fill" data-w="40" style="background:#ffb84d; color:#ffb84d;"></div></div><div class="pts-action" style="color:#ffb84d">Iniciativa propia (Te contará secretos de vez en cuando).</div></div>
-            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">60 pts</div><div class="pts-track"><div class="pts-fill" data-w="60" style="background:#ff9933; color:#ff9933;"></div></div><div class="pts-action" style="color:#ff9933">Roleo avanzado. (Te seguirá la corriente si le pides jugar o abrazos).</div></div>
-            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">80 pts</div><div class="pts-track"><div class="pts-fill" data-w="80" style="background:#ff7733; color:#ff7733;"></div></div><div class="pts-action" style="color:#ff7733">Roleos complejos (Maid, Yandere, etc).</div></div>
-            <div class="pts-row"><div class="pts-lbl" style="width: 50px;">100 pts</div><div class="pts-track"><div class="pts-fill" data-w="100" style="background:#ffcc00; color:#ffcc00; box-shadow: 0 0 8px #ffcc00"></div></div><div class="pts-action" style="color:#ffcc00; font-weight:bold;">Nivel Máximo de Afinidad y Confianza.</div></div>
+          <div class="timeline stagger in" style="margin-top: 24px;">
+            <div class="tl-item">
+              <div class="tl-dot" style="background: #555;">😐</div>
+              <div class="tl-body">
+                <div class="tl-name" style="color: #ccc;">Modo Estándar <span class="tl-tag" style="background: #333; color: #fff;">0 - 19 PTS</span></div>
+                <div class="tl-desc">Comportamiento normal. Sin beneficios especiales ni penalizaciones.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background: #d4af37;">🤝</div>
+              <div class="tl-body">
+                <div class="tl-name" style="color: #d4af37;">Trato Amable <span class="tl-tag" style="background: #8a7324; color: #fff;">20 - 39 PTS</span></div>
+                <div class="tl-desc">Novarito empieza a reconocer tu buen comportamiento. Te tratará de forma más empática y cálida en las conversaciones.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background: #ffb84d;">🤫</div>
+              <div class="tl-body">
+                <div class="tl-name" style="color: #ffb84d;">Iniciativa Propia <span class="tl-tag" style="background: #a67732; color: #fff;">40 - 59 PTS</span></div>
+                <div class="tl-desc">Nivel de confianza alto. Novarito tomará la iniciativa ocasionalmente para contarte secretos, chistes o datos curiosos sin que se lo pidas.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background: #ff9933;">🤗</div>
+              <div class="tl-body">
+                <div class="tl-name" style="color: #ff9933;">Roleo Avanzado <span class="tl-tag" style="background: #a66321; color: #fff;">60 - 79 PTS</span></div>
+                <div class="tl-desc">Afinidad desbloqueada. Novarito te seguirá la corriente si le pides jugar, realizar acciones de rol sencillas o le das abrazos interactivos.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background: #ff7733;">🎭</div>
+              <div class="tl-body">
+                <div class="tl-name" style="color: #ff7733;">Roleos Complejos <span class="tl-tag" style="background: #a64d21; color: #fff;">80 - 99 PTS</span></div>
+                <div class="tl-desc">Desbloqueo de personalidades alternas a petición (Maid, Yandere, Tsundere, etc.) para sesiones de rol profundas y personalizadas.</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-dot" style="background: #ffcc00; box-shadow: 0 0 12px #ffcc00;">👑</div>
+              <div class="tl-body">
+                <div class="tl-name" style="color: #ffcc00; font-weight: 900; text-shadow: 0 0 8px rgba(255,204,0,0.5);">Afinidad Máxima <span class="tl-tag" style="background: #ffcc00; color: #000;">100 PTS</span></div>
+                <div class="tl-desc">El nivel máximo de confianza. Eres considerado un VIP para el bot, obteniendo acceso a todas sus capacidades experimentales y respuestas sin filtros restrictivos (dentro de lo legal).</div>
+              </div>
+            </div>
           </div>
           
           <p style="margin-top: 14px; color: #ffaa00; font-size: 0.85rem;">⚠️ <em>Advertencia: Cualquier infracción o falta a las reglas (Aviso Leve o superior) reiniciará todo tu Karma a 0 instantáneamente, perdiendo todos los beneficios acumulados.</em></p>
